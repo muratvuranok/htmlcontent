@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GitHub İçerik Gösterici</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    pre {
+      background-color: #f4f4f4;
+      padding: 10px;
+      border: 1px solid #ddd;
+      overflow: auto;
+    }
+  </style>
+</head>
+<body>
+  <h1>GitHub İçeriği Gösterici</h1>
+  <button id="fetchContentBtn">İçerik Getir</button>
+  <pre id="githubContent">GitHub içeriği burada gösterilecek...</pre>
+
+  <script>
+    document.getElementById('fetchContentBtn').addEventListener('click', function() {
+      const url = 'https://raw.githubusercontent.com/username/repo/branch/path/to/file'; // GitHub ham dosya URL'si
+      
+      fetch(url)
+        .then(response => response.text())
+        .then(data => {
+          document.getElementById('githubContent').textContent = data;
+        })
+        .catch(error => {
+          document.getElementById('githubContent').textContent = 'İçerik alınırken bir hata oluştu: ' + error;
+        });
+    });
+  </script>
+</body>
+</html>
